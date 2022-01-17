@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const Sequelize = require('sequelize')
 
+
 const sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: 'sample.db',
@@ -9,6 +10,7 @@ const sequelize = new Sequelize({
         timestamps: false
     }
 })
+
 
 //tables definition
 const StudentLogIn = sequelize.define('student_login', {
@@ -180,6 +182,9 @@ app.delete('/students/:id', async (req, res) => {
 })
 
 //for projects
+
+
+
 app.get('/projects', async (req, res) => {
     try {
         const projects = await Project.findAll()
@@ -443,6 +448,11 @@ app.delete('/grades/:id', async (req, res) => {
     }
 })
 
+app.get("/", function(req, res){
+    res.send("Express here!")
+})
 
 
-app.listen(5051)
+app.listen(5051, function(){
+    console.log("express server is running on port 5051");
+})
